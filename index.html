@@ -1,139 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ExpressSpark | Srikakulam Workshop</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Financial Freedom & Planning Workshop — Enroll Now</title>
+  <meta name="description" content="Practical, proven financial planning workshop with low-risk investment options, live Q&A, tools & templates. Mentor is NISM-certified. Online event on Sunday, 7 September." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #070b14;
+      --card: rgba(255,255,255,0.06);
+      --card-strong: rgba(255,255,255,0.1);
+      --glass: rgba(255,255,255,0.12);
+      --txt: #eaf2ff;
+      --muted: #a6b3d6;
+      --brand1: #6ae1ff;
+      --brand2: #7f5cff;
+      --accent: #18e3a2;
+      --danger: #ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 16px;
+      --radius-lg: 22px;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .container{width:100%;max-width:var(--maxw);margin-inline:auto;padding:0 20px}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;
+      background:linear-gradient(135deg,var(--brand2),var(--brand1));
+      color:#06121c;border:none;padding:14px 20px;border-radius:999px;
+      font-weight:800;letter-spacing:.3px;box-shadow:0 8px 30px rgba(127,92,255,.35);
+      cursor:pointer;transition:transform .25s ease,filter .25s ease;
+    }
+    .btn:hover{transform:translateY(-2px);filter:saturate(1.2)}
+    .btn.ghost{
+      background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--txt);
+      box-shadow:none;
+    }
+    header.nav{
+      position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+      background:linear-gradient(180deg,rgba(7,11,20,.8),rgba(7,11,20,.3));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    header.nav .inner{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:.65rem;font-weight:900}
+    .brand .logo{
+      width:36px;height:36px;border-radius:10px;
+      background:conic-gradient(from 130deg at 50% 50%, var(--brand2), var(--brand1), var(--accent));
+      box-shadow:0 0 0 3px rgba(255,255,255,.06), 0 10px 30px rgba(127,92,255,.35);
+    }
+    .nav-actions{display:flex;gap:10px}
+    /* Hero */
+    .hero{
+      position:relative;overflow:hidden;
+      padding:80px 0 40px;
+    }
+    .bg-blobs{
+      position:absolute;inset:-20% -10% auto -10%;height:120%;
+      background:
+        radial-gradient(800px 800px at 10% 10%, rgba(127,92,255,.25), transparent 60%),
+        radial-gradient(700px 700px at 90% 20%, rgba(106,225,255,.2), transparent 60%),
+        radial-gradient(900px 700px at 50% 0%, rgba(24,227,162,.18), transparent 55%);
+      filter: blur(40px);
+      animation: pulse 9s ease-in-out infinite alternate;
+      pointer-events:none;
+    }
+    @keyframes pulse{to{transform:translateY(-20px) scale(1.05)}}
+    .hero .grid{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;
+    }
+    .kicker{
+      display:inline-flex;align-items:center;gap:.5rem;
+      background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+      color:#dff6ff;padding:8px 12px;border-radius:999px;font-weight:700;
+    }
+    .kicker i{font-size:18px;color:var(--accent)}
+    h1{margin:12px 0 10px;font-size:clamp(28px,4.2vw,54px);line-height:1.05}
+    .subtitle{color:var(--muted);font-size:clamp(14px,1.4vw,18px);max-width:60ch}
+    .hero-card{
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);
+      padding:22px;box-shadow:var(--shadow)
+    }
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 6px}
+    .badge{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:8px 12px;border-radius:999px;background:var(--card);
+      border:1px solid rgba(255,255,255,.12);color:#cfe8ff;font-weight:700
+    }
+    .check{color:var(--accent)}
+    .hero-cta{display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap}
+    /* Sections */
+    section{padding:60px 0;border-top:1px solid rgba(255,255,255,.06)}
+    .section-title{font-size:28px;margin:0 0 14px}
+    .muted{color:var(--muted)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{
+      background:var(--card);border:1px solid rgba(255,255,255,.12);
+      border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)
+    }
+    .card h3{margin:8px 0 8px;font-size:18px}
+    .card p{margin:0;color:#cfe1ff}
+    .icon{
+      width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--brand1),var(--brand2));
+      color:#071018;box-shadow:0 8px 24px rgba(122,96,255,.35)
+    }
+    .list{display:grid;gap:8px;margin:10px 0 0;padding:0 0 0 18px}
+    .list li{margin-left:6px}
+    /* Enroll */
+    .enroll{
+      background:
+        radial-gradient(800px 500px at 10% 50%, rgba(127,92,255,.18), transparent 60%),
+        radial-gradient(800px 600px at 90% 50%, rgba(106,225,255,.18), transparent 60%);
+    }
+    .enroll .wrap{
+      background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.1);border-radius:var(--radius-lg);
+      padding:22px;box-shadow:var(--shadow)
+    }
+    .payment-note{font-size:13px;color:#cddaf5;margin-top:10px}
+    /* FAQ */
+    details{background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:14px}
+    details+details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700}
+    /* Footer */
+    footer{padding:40px 0;color:#9fb1d8}
+    .footgrid{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+    .trust{display:flex;gap:10px;flex-wrap:wrap}
+    .trust .t{background:var(--card-strong);padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
+    /* Responsive */
+    @media (max-width: 900px){
+      .hero .grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .footgrid{grid-template-columns:1fr}
+    }
+    /* Reveal Animations */
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.show{opacity:1;transform:none}
+  </style>
 </head>
-<body class="bg-white text-gray-900">
-
-  <!-- Navbar -->
-  <header class="fixed w-full bg-white shadow-md z-50">
-    <div class="max-w-7xl mx-auto flex justify-between items-center p-4">
-      <h1 class="text-3xl font-bold text-orange-600">ExpressSpark</h1>
-      <nav class="space-x-6 hidden md:flex">
-        <a href="#home" class="hover:text-orange-600 font-medium">Home</a>
-        <a href="#curriculum" class="hover:text-orange-600 font-medium">Curriculum</a>
-        <a href="#register" class="hover:text-orange-600 font-medium">Register</a>
-        <a href="#pay" class="hover:text-orange-600 font-medium">Pay Now</a>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Financial Freedom Workshop</span>
+      </div>
+      <nav class="nav-actions">
+        <a href="#curriculum" class="btn ghost"><i class="ri-book-2-line"></i> Curriculum</a>
+        <a href="#enroll" class="btn"><i class="ri-flashlight-fill"></i> Enroll Now</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="pt-28 pb-16 text-center bg-gradient-to-r from-orange-500 to-blue-400 text-white">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4">First Ever Offline Stock Market Workshop in Srikakulam</h2>
-    <p class="text-lg md:text-xl mb-6">Organized by <span class="font-bold">ExpressSpark</span> | Learn. Network. Grow.</p>
-    <h2 class="text-2xl md:text-3xl font-bold mb-4 mb-12" style="margin-bottom: 50px;color: black">This <span style="color: white;">Sunday</span> 31-08-2025</h2>
-    <h2 class="text-2xl md:text-3xl font-bold mb-4" style="margin-bottom: 50px;margin-top: -20px;color: black">Venue : <span style="color: white;">Plot No: 83, PN Colony, Srikakulam</span></h2>
-    <h2 class="text-2xl md:text-3xl font-bold mb-4" style="margin-bottom: 50px;margin-top: -20px;">Fee : 109/- Only (Limited Seats Only)</h2>
-    <div class="space-x-4">
-      <a href="#register" class="bg-white text-orange-600 px-6 py-3 rounded-full font-semibold shadow hover:bg-orange-100">Register Now</a>
-      <a href="#pay" class="bg-gray-900 text-white px-6 py-3 rounded-full font-semibold shadow hover:bg-gray-800">Pay Now</a>
-    </div>
-  </section>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="bg-blobs" aria-hidden="true"></div>
+    <div class="container">
+      <div class="grid">
+        <div>
+          <span class="kicker reveal"><i class="ri-shield-check-line"></i> Mentor is <strong>NISM-Certified</strong></span>
+          <h1 class="reveal" style="transition-delay:.08s">Master Your Money. Build Real Wealth. Achieve Freedom.</h1>
+          <p class="subtitle reveal" style="transition-delay:.12s">
+            Practical, proven strategies for financial planning and wealth creation — explained in simple language,
+            with step-by-step templates and live Q&A. <br>
+            <strong>Online • Sunday, 7 September</strong>
+          </p>
 
-  <!-- USPs -->
-  <section class="max-w-7xl mx-auto py-16 px-6 grid md:grid-cols-4 gap-8 text-center">
-    <div class="p-6 bg-white shadow-lg rounded-xl border-t-4 border-orange-500">
-      <h3 class="font-bold text-lg mb-2">Interactive Mentors</h3>
-      <p>Engage directly with industry experts & gain practical insights.</p>
-    </div>
-    <div class="p-6 bg-white shadow-lg rounded-xl border-t-4 border-orange-500">
-      <h3 class="font-bold text-lg mb-2">Networking</h3>
-      <p>Build strong connections with like-minded aspiring traders.</p>
-    </div>
-    <div class="p-6 bg-white shadow-lg rounded-xl border-t-4 border-orange-500">
-      <h3 class="font-bold text-lg mb-2">Hands-on Learning</h3>
-      <p>Real trading setups to make you confident from day one.</p>
-    </div>
-    <div class="p-6 bg-white shadow-lg rounded-xl border-t-4 border-orange-500">
-      <h3 class="font-bold text-lg mb-2">Refreshments</h3>
-      <p>Enjoy refreshments while you learn in a comfortable environment.</p>
-    </div>
-  </section>
+          <div class="badges reveal" style="transition-delay:.18s">
+            <span class="badge"><i class="ri-bard-line check"></i> Beginner-friendly</span>
+            <span class="badge"><i class="ri-line-chart-line check"></i> Low-risk options covered</span>
+            <span class="badge"><i class="ri-tools-line check"></i> Worksheets & Trackers</span>
+            <span class="badge"><i class="ri-shield-star-line check"></i> Proven methods</span>
+          </div>
 
-  <!-- Curriculum -->
-  <section id="curriculum" class="bg-gray-50 py-16 px-6">
-    <div class="max-w-4xl mx-auto text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold text-orange-600">Workshop Curriculum</h2>
-      <p class="mt-4 text-lg">A 3-hour beginner-friendly workshop broken into 7 interactive modules.</p>
-    </div>
-    <div class="relative border-l-4 border-orange-500 max-w-3xl mx-auto space-y-10">
-      <div class="ml-6">
-        <h3 class="font-bold text-xl">Module 1: What is Money & Why Invest?</h3>
-        <p class="text-gray-700">Understand the basics of money, savings vs investments, and why wealth creation matters.</p>
-      </div>
-      <div class="ml-6">
-        <h3 class="font-bold text-xl">Module 2: Indian Financial Ecosystem</h3>
-        <p>Learn about SEBI, NSE, BSE, RBI, and how the stock market fits into our economy.</p>
-      </div>
-      <div class="ml-6">
-        <h3 class="font-bold text-xl">Module 3: What is a Stock?</h3>
-        <p>Simple explanation of stocks with real-life company examples, IPOs, and listings.</p>
-      </div>
-      <div class="ml-6">
-        <h3 class="font-bold text-xl">Module 4: How Prices Change?</h3>
-        <p>Understand supply & demand, market news impact, and investor psychology.</p>
-      </div>
-      <div class="ml-6">
-        <h3 class="font-bold text-xl">Module 5: Brokers & Accounts</h3>
-        <p>Learn about Demat & Trading accounts, step-by-step opening guide, and broker types.</p>
-      </div>
-      <div class="ml-6">
-        <h3 class="font-bold text-xl">Module 6: Market Basics</h3>
-        <p>Types of orders, market timings, settlement cycles (T+1 explained simply).</p>
-      </div>
-      <div class="ml-6">
-        <h3 class="font-bold text-xl">Module 7: First Look at Trading</h3>
-        <p>Introduction to trading platforms, watchlists, order books, and basic charts.</p>
+          <div class="hero-cta reveal" style="transition-delay:.22s">
+            <a href="#enroll" class="btn"><i class="ri-rocket-2-fill"></i> Reserve My Spot</a>
+            <a href="#benefits" class="btn ghost"><i class="ri-eye-line"></i> See What You’ll Get</a>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal" style="transition-delay:.12s">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div class="icon"><i class="ri-user-star-fill"></i></div>
+            <div>
+              <strong>About the Mentor</strong>
+              <p class="muted" style="margin:6px 0 0">
+                NISM-certified finance professional with hands-on experience helping learners build
+                clear financial plans using safe, practical strategies.
+              </p>
+            </div>
+          </div>
+          <div class="badges" style="margin-top:14px">
+            <span class="badge"><i class="ri-medal-line"></i> NISM Certified</span>
+            <span class="badge"><i class="ri-group-line"></i> Live Q&A</span>
+            <span class="badge"><i class="ri-lock-2-line"></i> Secure Payment</span>
+          </div>
+        </aside>
       </div>
     </div>
   </section>
 
-  <!-- Details -->
-  <section class="py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold text-orange-600 mb-4">Workshop Details</h2>
-       <p class="mb-2"><b>Date : 31-08-2025</b></p>
-    <p class="mb-2">📍 Venue: <span class="font-semibold">Plot No: 83, PN Colony, Srikakulam</span></p>
-  
-    <p class="mb-2">🕙 Slot 1: 10:00 AM – 1:00 PM</p>
-    <p class="mb-2">🕒 Slot 2: 3:00 PM – 6:00 PM</p>
-    <p class="mb-4">💰 Fee: ₹109 (includes refreshments)</p>
-    <p class="text-lg font-semibold text-gray-800">Limited Seats Available</p>
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="container reveal">
+      <h2 class="section-title">Why Join</h2>
+      <p class="muted">Straightforward guidance with tools you can use immediately — no hype, no jargon.</p>
+      <div class="cards" style="margin-top:14px">
+        <div class="card">
+          <div class="icon"><i class="ri-compasses-2-line"></i></div>
+          <h3>Clarity & Control</h3>
+          <p>Learn a simple framework to plan, save, invest, and protect — aligned to your goals.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="ri-quill-pen-line"></i></div>
+          <h3>Ready-to-Use Templates</h3>
+          <p>Budget Planner, Investment Tracker, and a Financial Freedom Roadmap.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="ri-shield-check-line"></i></div>
+          <h3>Low-Risk First</h3>
+          <p>Discover safe, proven investment options before exploring growth strategies.</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Registration -->
-  <section id="register" class="bg-gray-100 py-16 px-6">
-     <div class="buttons" style="width: 100%;display: flex;align-items: center;justify-content: center;column-gap: 50px;padding:60px 0px;flex-wrap: wrap;row-gap: 30px;">
-      <button style="width:350px;height:50px;color: white;border-radius: 20px;background-color: orangered;font-size: 26px;"><a href="tel:9346813383">Register Slot By Call</a></button>
-      <button style="width:400px;height:50px;color: white;border-radius: 20px;background-color: orangered;font-size: 26px;"><a href="https://wa.me/919346813383?text=Hi%20Sir,%20I'm%20Interested%20in%20a%20Stock%20Market%20Workshop !" target="_blank">
-  Register Slot By WhatsApp
-</a>
-</button>
+  <!-- CURRICULUM -->
+  <section id="curriculum">
+    <div class="container reveal">
+      <h2 class="section-title">Curriculum (Simple & Proven)</h2>
+      <p class="muted">Easy to understand, focused on what actually works.</p>
+
+      <div class="cards" style="margin-top:14px">
+        <div class="card">
+          <div class="icon"><i class="ri-mind-map"></i></div>
+          <h3>Module 1 — Understanding Financial Freedom</h3>
+          <ul class="list">
+            <li>What financial freedom means (in real life)</li>
+            <li>The simple formula: earn → save → invest → grow</li>
+            <li>Common money mistakes to avoid</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="ri-wallet-3-line"></i></div>
+          <h3>Module 2 — Managing Money Wisely</h3>
+          <ul class="list">
+            <li>Tracking income & expenses without stress</li>
+            <li>Spend–Save–Invest rule (balanced approach)</li>
+            <li>Emergency fund: how much and where to keep it</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="ri-safe-2-line"></i></div>
+          <h3>Module 3 — Best Low-Risk Investments</h3>
+          <ul class="list">
+            <li>FDs & RDs, PPF, NSC, Post Office MIS</li>
+            <li>Government & RBI Savings Bonds</li>
+            <li>How to compare safety, returns & lock-ins</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="ri-line-chart-line"></i></div>
+          <h3>Module 4 — Smart Growth (Beginner-Friendly)</h3>
+          <ul class="list">
+            <li>Mutual Funds with SIPs</li>
+            <li>Low-cost Index Funds (long-term focus)</li>
+            <li>Power of compounding with simple examples</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="ri-shield-star-line"></i></div>
+          <h3>Module 5 — Protecting Your Money</h3>
+          <ul class="list">
+            <li>Insurance basics: Life, Health, Term</li>
+            <li>Diversification to reduce risk</li>
+            <li>Avoiding scams & hype</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="icon"><i class="ri-route-line"></i></div>
+          <h3>Module 6 — The Path to Financial Independence</h3>
+          <ul class="list">
+            <li>Calculate your Financial Freedom Number</li>
+            <li>Safe passive income ideas (dividends, rentals, digital)</li>
+            <li>Designing a plan you can stick to</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="max-w-4xl mx-auto text-center mb-8">
-      <h2 class="text-3xl font-bold text-orange-600">Register Now</h2>
-      <p class="mt-2">Fill out the form below to secure your spot.</p>
-    </div>
-    <div class="max-w-3xl mx-auto">
-      <iframe src="https://tally.so/r/31LVDM" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0" title="Registration Form"></iframe>
-    </div>
-   
   </section>
 
-  <!-- Payment -->
-  <section id="pay" class="py-16 text-center">
-    
-    <h2 class="text-3xl font-bold text-orange-600 mb-6" >Complete Your Payment</h2>
-   <form><script src="https://checkout.razorpay.com/v1/payment-button.js" data-payment_button_id="pl_RAPaDp1VAyvrHt" async> </script> </form>
+  <!-- LOW-RISK SECTION (CALL-OUT) -->
+  <section>
+    <div class="container reveal">
+      <h2 class="section-title">Low-Risk Options at a Glance</h2>
+      <div class="cards" style="margin-top:14px">
+        <div class="card">
+          <h3>Guaranteed-style & Govt-Backed</h3>
+          <ul class="list">
+            <li>PPF • NSC • RBI Savings Bonds</li>
+            <li>Post Office Monthly Income Scheme</li>
+            <li>Bank FDs/RDs with senior citizen variants</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Capital Protection Mindset</h3>
+          <ul class="list">
+            <li>Prioritise safety & liquidity for essentials</li>
+            <li>Use growth instruments only for surplus</li>
+            <li>Always cross-check product ratings & issuer</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Beginner Growth Bridge</h3>
+          <ul class="list">
+            <li>SIPs in diversified equity funds</li>
+            <li>Index funds for long term</li>
+            <li>Stay invested; avoid timing the market</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white text-center py-6">
-    <p>© 2025 ExpressSpark | All Rights Reserved</p>
+  <!-- WHAT YOU GET -->
+  <section id="benefits-2">
+    <div class="container reveal">
+      <h2 class="section-title">What You’ll Get</h2>
+      <div class="cards" style="margin-top:14px">
+        <div class="card">
+          <div class="icon"><i class="ri-file-list-3-line"></i></div>
+          <h3>Financial Freedom PDF</h3>
+          <p>Step-by-step blueprint you can follow at your own pace.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="ri-table-2"></i></div>
+          <h3>Excel Templates</h3>
+          <p>Budget Planner & Investment Tracker with simple inputs.</p>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="ri-chat-1-line"></i></div>
+          <h3>Live Q&A</h3>
+          <p>Clear, practical answers to common money questions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENROLL -->
+  <section id="enroll" class="enroll">
+    <div class="container reveal">
+      <div class="wrap">
+        <h2 class="section-title" style="margin-top:0">Enroll Securely</h2>
+        <p class="muted">Online • Sunday, 7 September • Limited seats</p>
+
+        <!-- Your Razorpay Payment Button (inside form as requested) -->
+        <form style="margin-top:12px">
+          <script src="https://checkout.razorpay.com/v1/payment-button.js"
+                  data-payment_button_id="pl_RDZqBVhZxzjcGr" async>
+          </script>
+        </form>
+
+        <p class="payment-note">
+          Payments are processed via <strong>Razorpay</strong>. You’ll receive a confirmation email/SMS after payment.
+        </p>
+
+        <div class="badges" style="margin-top:12px">
+          <span class="badge"><i class="ri-lock-2-line"></i> 128-bit SSL</span>
+          <span class="badge"><i class="ri-refund-2-line"></i> Secure Checkout</span>
+          <span class="badge"><i class="ri-customer-service-2-line"></i> Support Available</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container reveal">
+      <h2 class="section-title">FAQs</h2>
+      <details>
+        <summary>Is this beginner-friendly?</summary>
+        <p class="muted">Yes. Everything is explained in simple language with examples and templates.</p>
+      </details>
+      <details>
+        <summary>Will you cover low-risk options?</summary>
+        <p class="muted">Yes. We focus first on PPF, NSC, FDs/RDs, Post Office MIS, and RBI Savings Bonds before moving to growth instruments like mutual funds and index funds.</p>
+      </details>
+      <details>
+        <summary>Do I need prior investing experience?</summary>
+        <p class="muted">No. You’ll learn a clear, step-by-step approach that you can start immediately.</p>
+      </details>
+      <details>
+        <summary>Will I get the templates?</summary>
+        <p class="muted">Yes. Budget Planner, Investment Tracker, and a Financial Freedom Roadmap PDF are included.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footgrid">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <strong>Financial Freedom Workshop</strong><br>
+          <span style="font-size:13px;color:#a8b7da">Mentor is <b>NISM-Certified</b></span>
+        </div>
+      </div>
+      <div class="trust">
+        <span class="t">Powered by Razorpay</span>
+        <span class="t">Secure Payments</span>
+        <span class="t">Live Online</span>
+      </div>
+    </div>
   </footer>
 
+  <script>
+    // Smooth scroll for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+      });
+    });
+
+    // IntersectionObserver reveal animations
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.reveal, .card').forEach(el=>io.observe(el));
+  </script>
 </body>
 </html>
